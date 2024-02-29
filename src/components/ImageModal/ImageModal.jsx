@@ -1,24 +1,15 @@
 import Modal from "react-modal";
-import { useState } from "react";
 
-export default function ImageModal() {
-  const [modalIsOpen, setIsOpen] = useState(true);
+Modal.setAppElement("#root");
 
-  function openModal() {
-    setIsOpen(true);
-  }
-  function closeModal() {
-    setIsOpen(false);
-  }
+export default function ImageModal({ image, closeModal }) {
   return (
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      contentLabel="Example Modal"
-    >
-      <h2>Modal Title</h2>
-      <button onClick={closeModal}>close</button>
-      <img src="" alt="image" />
+    <Modal onRequestClose={closeModal} contentLabel="Example Modal">
+      <div>
+        <h2>Modal Title</h2>
+        <button onClick={closeModal}>close</button>
+        <img src={image.urls.regular} alt={image.alt_description} />
+      </div>
     </Modal>
   );
 }
