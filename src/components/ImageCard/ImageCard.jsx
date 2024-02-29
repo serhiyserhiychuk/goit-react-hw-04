@@ -1,9 +1,13 @@
+import css from "./ImageCard.module.css";
+
 export default function ImageCard({ item }) {
   return (
-    <li key={item.id}>
-      <div>
-        <img src={item.links.html} alt={item.alt_description} />
-      </div>
-    </li>
+    <div className={css.container}>
+      <img
+        className={css.image}
+        src={item.urls.small}
+        alt={item.alt_description}
+      />
+    </div>
   );
 }

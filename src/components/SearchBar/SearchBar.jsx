@@ -17,6 +17,7 @@ export default function SearchBar({ onSearch }) {
               return;
             } else {
               onSearch(e.target.elements.query.value);
+              e.target.elements.query.value = "";
             }
           }}
         >
