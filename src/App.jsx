@@ -69,13 +69,19 @@ const App = () => {
 
   return (
     <>
-      <SearchBar onSearch={onSubmit} />
+      <SearchBar onSubmit={onSubmit} />
       {response.length !== 0 && (
         <ImageGallery images={response} handleModal={handleModal} />
       )}
       {isLoading && <Loader />}
       {response.length !== 0 && <LoadMoreBtn loadMore={handleLoadMore} />}
-      {modalIsOpen && <ImageModal image={modalImage} closeModal={closeModal} />}
+      {modalIsOpen && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          image={modalImage}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 };

@@ -3,7 +3,7 @@ import { GoSearch } from "react-icons/go";
 import { Toaster } from "react-hot-toast";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSubmit }) {
   return (
     <>
       <Toaster />
@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch }) {
               ErrorMessage("Enter text to search for images!");
               return;
             } else {
-              onSearch(e.target.elements.query.value);
+              onSubmit(e.target.elements.query.value);
               e.target.elements.query.value = "";
             }
           }}

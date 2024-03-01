@@ -1,10 +1,18 @@
 import Modal from "react-modal";
+import css from "./ImageModal.module.css";
 
 Modal.setAppElement("#root");
 
-export default function ImageModal({ image, closeModal }) {
+export default function ImageModal({ isOpen, image, closeModal }) {
   return (
-    <Modal onRequestClose={closeModal} contentLabel="Example Modal">
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      contentLabel="Example Modal"
+      portalClassName={css.portal}
+      overlayClassName={css.overlay}
+      className={css.modal}
+    >
       <div>
         <h2>Modal Title</h2>
         <button onClick={closeModal}>close</button>
