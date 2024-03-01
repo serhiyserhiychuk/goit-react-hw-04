@@ -1,5 +1,6 @@
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
+import { MdOutlineClose } from "react-icons/md";
 
 Modal.setAppElement("#root");
 
@@ -13,10 +14,16 @@ export default function ImageModal({ isOpen, image, closeModal }) {
       overlayClassName={css.overlay}
       className={css.modal}
     >
-      <div>
-        <h2>Modal Title</h2>
-        <button onClick={closeModal}>close</button>
-        <img src={image.urls.regular} alt={image.alt_description} />
+      <div className={css.container}>
+        <h2 className={css.title}>{image.alt_description}</h2>
+        <button className={css.button} onClick={closeModal}>
+          <MdOutlineClose size={32} />
+        </button>
+        <img
+          className={css.image}
+          src={image.urls.regular}
+          alt={image.alt_description}
+        />
       </div>
     </Modal>
   );
