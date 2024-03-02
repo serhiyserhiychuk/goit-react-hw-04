@@ -1,5 +1,3 @@
-import toast from "react-hot-toast";
-
-export default function ErrorMessage(text) {
-  return toast.error(text);
+export default function ErrorMessage() {
+  return <p>Something went wrong, try again!</p>;
 }

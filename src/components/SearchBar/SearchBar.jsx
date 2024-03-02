@@ -1,19 +1,17 @@
 import css from "./SearchBar.module.css";
 import { GoSearch } from "react-icons/go";
-import { Toaster } from "react-hot-toast";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import toast from "react-hot-toast";
 
 export default function SearchBar({ onSubmit }) {
   return (
     <>
-      <Toaster />
       <header className={css.header}>
         <form
           className={css.form}
           onSubmit={(e) => {
             e.preventDefault();
             if (e.target.elements.query.value.trim() === "") {
-              ErrorMessage("Enter text to search for images!");
+              toast.error("Enter text to search for images!");
               return;
             } else {
               onSubmit(e.target.elements.query.value);

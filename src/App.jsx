@@ -5,6 +5,7 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 import { useState, useEffect } from "react";
 
@@ -13,6 +14,7 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState({});
 
@@ -30,7 +32,7 @@ const App = () => {
           `${baseURL}&page=${page}&per_page=8&orientation=landscape&query=${query}`
         );
         if (images.data.results.length === 0) {
-          ErrorMessage("There are no images with this query!");
+          setError(true);
         }
         if (page === 1) {
           setResponse(images.data.results);
@@ -41,7 +43,7 @@ const App = () => {
           ]);
         }
       } catch (error) {
-        ErrorMessage("Something went wrong, try again!");
+        setError(true);
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +58,7 @@ const App = () => {
   };
 
   const handleLoadMore = () => {
-    setPage(page + 1);
+    setPage((page) => page + 1);
   };
 
   const handleModal = (image) => {
@@ -69,12 +71,17 @@ const App = () => {
 
   return (
     <>
+      <Toaster />
       <SearchBar onSubmit={onSubmit} />
-      {response.length !== 0 && (
+      {error ? (
+        <ErrorMessage />
+      ) : (
         <ImageGallery images={response} handleModal={handleModal} />
       )}
       {isLoading && <Loader />}
-      {response.length !== 0 && <LoadMoreBtn loadMore={handleLoadMore} />}
+      {response.length !== 0 && !isLoading && (
+        <LoadMoreBtn loadMore={handleLoadMore} />
+      )}
       {modalIsOpen && (
         <ImageModal
           isOpen={modalIsOpen}
