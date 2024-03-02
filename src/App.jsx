@@ -27,7 +27,7 @@ const App = () => {
           "https://api.unsplash.com/search/photos?client_id=OZ4LcaR_w8EOzH6tuoKvWOmMgGbKqowTrf-FN000WKI";
         setIsLoading(true);
         const images = await axios.get(
-          `${baseURL}&page=${page}&per_page=8&query=${query}`
+          `${baseURL}&page=${page}&per_page=8&orientation=landscape&query=${query}`
         );
         if (images.data.results.length === 0) {
           ErrorMessage("There are no images with this query!");

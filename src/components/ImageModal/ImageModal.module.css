@@ -1,31 +1,33 @@
-.portal {
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(
     rgba(46, 47, 66, 0.7),
     rgba(46, 47, 66, 0.7)
   );
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.overlay {
-  width: 100%;
-  height: 100%;
 }
 .modal {
   width: 100%;
   height: 100%;
 }
 .container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  margin-top: 5%;
+  position: relative;
 }
 .title {
   position: absolute;
+  bottom: 30px;
+  left: 25%;
+}
+.text {
+  position: absolute;
   bottom: 0;
-  left: 20%;
+  left: 25%;
+  font-size: 20px;
+  font-weight: 600;
 }
 .button {
   position: absolute;
@@ -35,7 +37,7 @@
   background-color: transparent;
 }
 .image {
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 720px;
+  height: 480px;
+  margin: auto;
 }
