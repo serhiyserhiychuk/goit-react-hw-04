@@ -5,7 +5,6 @@ import { MdOutlineClose } from "react-icons/md";
 Modal.setAppElement("#root");
 
 export default function ImageModal({ isOpen, image, closeModal }) {
-  console.log(image);
   return (
     <Modal
       isOpen={isOpen}
