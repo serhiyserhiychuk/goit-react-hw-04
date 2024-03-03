@@ -17,12 +17,13 @@ const App = () => {
   const [error, setError] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState({});
+  const [isMoreToLoad, setIsMoreToLoad] = useState(true);
 
   useEffect(() => {
     if (query === "") {
       return;
     }
-
+    setIsMoreToLoad(true);
     async function handleSearch() {
       try {
         const baseURL =
@@ -33,6 +34,9 @@ const App = () => {
         );
         if (images.data.results.length === 0) {
           setError(true);
+        }
+        if (images.data.total_pages <= 1) {
+          setIsMoreToLoad(false);
         }
         if (page === 1) {
           setResponse(images.data.results);
@@ -79,7 +83,7 @@ const App = () => {
         <ImageGallery images={response} handleModal={handleModal} />
       )}
       {isLoading && <Loader />}
-      {response.length !== 0 && !isLoading && (
+      {response.length !== 0 && !isLoading && isMoreToLoad && (
         <LoadMoreBtn loadMore={handleLoadMore} />
       )}
       {modalIsOpen && (
